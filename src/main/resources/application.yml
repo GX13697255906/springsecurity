@@ -1,0 +1,13 @@
+server:
+  port: 8080
+spring:
+  application:
+    name: springsecurity
+  datasource:
+    url: jdbc:mysql://139.199.84.234:3306/taobao?characterEncoding=utf8&useSSL=false&serverTimezone=UTC&rewriteBatchedStatements=true
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: root1
+    password: root1
+mybatis-plus:
+  typeAliasesPackage: com.pot.cloud.admin.server.**.entity
+  mapper-locations: classpath*:mapper/**/*.xml
