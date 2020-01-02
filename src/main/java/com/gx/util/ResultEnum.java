@@ -5,8 +5,8 @@ import lombok.Getter;
 @Getter
 public enum ResultEnum {
 
-    SUCCESS(101,"成功"),
-    FAILURE(102,"失败"),
+    SUCCESS(101,"SUCCESS"),
+    FAILURE(102,"FAILURE"),
     USER_NEED_AUTHORITIES(201,"用户未登录"),
     USER_LOGIN_FAILED(202,"用户账号或密码错误"),
     USER_LOGIN_SUCCESS(203,"用户登录成功"),
@@ -14,7 +14,7 @@ public enum ResultEnum {
     USER_LOGOUT_SUCCESS(205,"用户登出成功"),
     TOKEN_IS_BLACKLIST(206,"此token为黑名单"),
     LOGIN_IS_OVERDUE(207,"登录已失效"),
-    ;
+    USER_ALERDY_EXIST(208,"当前用户已经存在");
 
     private Integer code;
 

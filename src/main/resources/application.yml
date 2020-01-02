@@ -9,5 +9,7 @@ spring:
     username: root1
     password: root1
 mybatis-plus:
-  typeAliasesPackage: com.pot.cloud.admin.server.**.entity
+  typeAliasesPackage: com.gx.entity
   mapper-locations: classpath*:mapper/**/*.xml
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl

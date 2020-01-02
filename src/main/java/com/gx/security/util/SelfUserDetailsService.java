@@ -1,4 +1,4 @@
-package com.gx.security;
+package com.gx.security.util;
 
 import com.gx.service.UserService;
 import com.gx.util.UtilMap;

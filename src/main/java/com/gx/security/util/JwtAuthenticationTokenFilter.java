@@ -1,4 +1,4 @@
-package com.gx.security;
+package com.gx.security.util;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;

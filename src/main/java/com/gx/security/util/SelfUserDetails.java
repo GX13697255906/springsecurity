@@ -1,4 +1,4 @@
-package com.gx.security;
+package com.gx.security.util;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;

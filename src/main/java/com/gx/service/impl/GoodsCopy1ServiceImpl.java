@@ -1,9 +1,9 @@
 package com.gx.service.impl;
 
+import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.gx.entity.GoodsCopy1;
 import com.gx.mapper.GoodsCopy1Mapper;
 import com.gx.service.GoodsCopy1Service;
-import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.stereotype.Service;
 
 /**

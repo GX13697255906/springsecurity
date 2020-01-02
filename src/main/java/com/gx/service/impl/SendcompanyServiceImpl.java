@@ -1,9 +1,9 @@
 package com.gx.service.impl;
 
+import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.gx.entity.Sendcompany;
 import com.gx.mapper.SendcompanyMapper;
 import com.gx.service.SendcompanyService;
-import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.stereotype.Service;
 
 /**

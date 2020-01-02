@@ -1,7 +1,7 @@
 package com.gx.mapper;
 
-import com.gx.entity.Goods;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import com.gx.entity.Goods;
 
 /**
  * <p>

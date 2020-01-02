@@ -1,4 +1,4 @@
-package com.gx.security;
+package com.gx.security.util;
 
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;

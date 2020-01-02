@@ -1,4 +1,4 @@
-package com.gx.security;
+package com.gx.security.util;
 
 import com.alibaba.fastjson.JSON;
 import com.gx.util.ResultEnum;

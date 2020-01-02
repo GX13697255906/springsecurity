@@ -1,9 +1,15 @@
 package com.gx.controller;
 
 
-import org.springframework.web.bind.annotation.RequestMapping;
+import com.gx.service.UserService;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+import org.apache.commons.collections.MapUtils;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
 
-import org.springframework.web.bind.annotation.RestController;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * <p>
@@ -15,7 +21,27 @@ import org.springframework.web.bind.annotation.RestController;
  */
 @RestController
 @RequestMapping("/user")
+@Api(value = "用户管理",tags = "用户管理")
 public class UserController {
+
+    @Autowired
+    private UserService userService;
+
+    public Map<String,Object> login(@RequestBody HashMap<String,Object> params){
+
+
+
+        return null;
+
+    }
+
+    @ApiOperation(value = "用户注册",notes = "用户注册")
+    @RequestMapping(value = "/registery",method = RequestMethod.POST)
+    public String registery(@RequestBody HashMap<String,Object> params) throws Exception{
+        String result = userService.registery(MapUtils.getString(params,"username"),MapUtils.getString(params,"password"));
+        return result;
+    }
+
 
 }
 

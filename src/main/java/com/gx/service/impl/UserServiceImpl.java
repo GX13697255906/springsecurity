@@ -1,14 +1,20 @@
 package com.gx.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.gx.entity.User;
 import com.gx.mapper.UserMapper;
 import com.gx.service.UserService;
-import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.gx.util.PasswordEncoderUtil;
+import com.gx.util.ResultEnum;
+import com.gx.util.UtilId;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+import java.util.Map;
+import java.util.concurrent.Executors;
 
 /**
  * <p>
@@ -19,8 +25,13 @@ import java.util.List;
  * @since 2019-12-31
  */
 @Service
-public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements UserService {
+public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements UserService{
 
+    /**
+     * 通过username查询登录用户
+     * @param username
+     * @return
+     */
     @Override
     public User getUserByUserName(String username) {
         User user = new User();
@@ -28,6 +39,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
         queryWrapper.lambda()
                 .eq(User::getUsername, username);
         List<User> list = new ArrayList<>();
+        list = this.list(queryWrapper);
         if(null == list){
             return null;
         }else {
@@ -36,5 +48,29 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
             }
         }
         return user;
+    }
+
+    @Override
+    public Map<String, Object> login(String username, String password) {
+        return null;
+    }
+
+    @Override
+    public String registery(String username, String password){
+        boolean flag = false;
+        if(null != getUserByUserName(username)){
+            throw new RuntimeException(ResultEnum.USER_ALERDY_EXIST.getMessage());
+        }
+        User user = new User();
+        user.setId(UtilId.UUID());
+        user.setUsername(username);
+        user.setPassword(PasswordEncoderUtil.passwordEncoder(password));
+        user.setStatus("0");
+        user.setCreatetime(new Date());
+        flag = this.save(user);
+        if(flag == true){
+            return ResultEnum.SUCCESS.getMessage();
+        }
+        return ResultEnum.FAILURE.getMessage();
     }
 }

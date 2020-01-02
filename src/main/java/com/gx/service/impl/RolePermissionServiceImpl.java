@@ -1,9 +1,9 @@
 package com.gx.service.impl;
 
+import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.gx.entity.RolePermission;
 import com.gx.mapper.RolePermissionMapper;
 import com.gx.service.RolePermissionService;
-import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.stereotype.Service;
 
 /**

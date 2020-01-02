@@ -1,7 +1,10 @@
 package com.gx.service;
 
-import com.gx.entity.User;
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.gx.entity.User;
+import org.springframework.web.bind.annotation.RequestParam;
+
+import java.util.Map;
 
 /**
  * <p>
@@ -14,6 +17,10 @@ import com.baomidou.mybatisplus.extension.service.IService;
 public interface UserService extends IService<User> {
 
     User getUserByUserName(String username);
+
+    Map<String,Object> login(String username,String password);
+
+    String registery(String username,String password);
 
 
 }

@@ -1,5 +1,6 @@
 package com.gx.security;
 
+import com.gx.security.util.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -56,7 +57,9 @@ public class SpringSecurityConf extends WebSecurityConfigurerAdapter {
 
                 .and()
                 .authorizeRequests()//定义哪些URL需要被保护、哪些不需要被保护
-                .antMatchers("/goods/del")
+                .antMatchers("/user/registery/**",
+                        "/user/login/**",
+                        "/swagger-ui.html","/swagger-resources/**","/images/**","/webjars/**","/v2/api-docs","/configuration/ui","/configuration/security","/doc.html")
                 .permitAll()
 
                 .anyRequest()//任何请求,登录后可以访问

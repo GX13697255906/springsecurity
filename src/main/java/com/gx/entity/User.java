@@ -16,7 +16,7 @@ import lombok.experimental.Accessors;
  * </p>
  *
  * @author xun.guo
- * @since 2019-12-31
+ * @since 2020-01-02
  */
 @Data
 @EqualsAndHashCode(callSuper = false)
@@ -29,9 +29,8 @@ public class User implements Serializable {
     @TableId(value = "id", type = IdType.ID_WORKER)
     private String id;
 
+    @ApiModelProperty(value = "用户名/登录名")
     private String username;
-
-    private String nickname;
 
     private String password;
 
@@ -39,8 +38,7 @@ public class User implements Serializable {
 
     private String type;
 
-    private Integer islock;
-
+    @ApiModelProperty(value = "用户状态  0：正常 1：锁定")
     private String status;
 
     private Date createtime;
