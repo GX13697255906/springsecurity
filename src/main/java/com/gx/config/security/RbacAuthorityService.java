@@ -1,4 +1,4 @@
-package com.gx.security.util;
+package com.gx.config.security;
 
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -30,16 +30,14 @@ public class RbacAuthorityService {
             //获取资源
             Set<String> urls = new HashSet();
             // 这些 url 都是要登录后才能访问，且其他的 url 都不能访问！
-            urls.add("/goods/del/**");//application.yml里设置了项目路径，百度一下我就不贴了
+            urls.add("/goods/**");//application.yml里设置了项目路径，百度一下我就不贴了
             AntPathMatcher antPathMatcher = new AntPathMatcher();
-
             for (String url : urls) {
                 if (antPathMatcher.match(url, request.getRequestURI())) {
                     hasPermission = true;
                     break;
                 }
             }
-
             return hasPermission;
         } else {
             return false;

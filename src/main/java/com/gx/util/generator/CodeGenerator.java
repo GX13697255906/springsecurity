@@ -1,4 +1,4 @@
-package com.gx.generator;
+package com.gx.util.generator;
 
 /**
  * @author ：yangqingbo

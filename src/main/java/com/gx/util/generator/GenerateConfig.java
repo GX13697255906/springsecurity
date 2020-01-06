@@ -1,4 +1,4 @@
-package com.gx.generator;
+package com.gx.util.generator;
 
 import com.baomidou.mybatisplus.annotation.DbType;
 import lombok.Data;

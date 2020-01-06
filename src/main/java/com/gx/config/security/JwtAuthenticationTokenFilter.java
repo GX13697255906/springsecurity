@@ -1,5 +1,7 @@
-package com.gx.security.util;
+package com.gx.config.security;
 
+import com.gx.config.Exception.ExceptionEnum;
+import com.gx.config.Exception.SecurityException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -24,14 +26,20 @@ public class JwtAuthenticationTokenFilter extends OncePerRequestFilter {
     @Autowired
     SelfUserDetailsService userDetailsService;
 
+
     @Override
-    protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
+    protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws IOException, ServletException, SecurityException {
+        response.setCharacterEncoding("UTF-8");  //重点  相应编码格式
         String authHeader = request.getHeader("Authorization");
 
-        if (authHeader != null && authHeader.startsWith("Bearer ")) {
-            String authToken = authHeader.substring("Bearer ".length());
+        if (authHeader != null && authHeader.startsWith("Bearer")) {
+            String authToken = authHeader.substring("Bearer".length());
 
             String username = JwtTokenUtil.parseToken(authToken, "_secret");
+
+            if(username == null){
+                throw new SecurityException(ExceptionEnum.TOKEN_EXPIRED);
+            }
 
             if (username != null && SecurityContextHolder.getContext().getAuthentication() == null) {
 
@@ -45,7 +53,6 @@ public class JwtAuthenticationTokenFilter extends OncePerRequestFilter {
                 }
             }
         }
-
         filterChain.doFilter(request, response);
     }
 }

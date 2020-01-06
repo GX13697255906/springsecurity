@@ -2,6 +2,7 @@ package com.gx.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.gx.config.Exception.ExceptionEnum;
 import com.gx.entity.User;
 import com.gx.mapper.UserMapper;
 import com.gx.service.UserService;
@@ -14,7 +15,6 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
-import java.util.concurrent.Executors;
 
 /**
  * <p>
@@ -42,10 +42,10 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
         list = this.list(queryWrapper);
         if(null == list){
             return null;
+        }else if(list.size() == 0) {
+            return null;
         }else {
-            if(list.size() == 1){
-                user = list.get(0);
-            }
+            user = list.get(0);
         }
         return user;
     }
@@ -59,7 +59,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
     public String registery(String username, String password){
         boolean flag = false;
         if(null != getUserByUserName(username)){
-            throw new RuntimeException(ResultEnum.USER_ALERDY_EXIST.getMessage());
+            throw new RuntimeException(ExceptionEnum.USER_ALERDY_EXIST.getMessage());
         }
         User user = new User();
         user.setId(UtilId.UUID());
@@ -67,6 +67,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
         user.setPassword(PasswordEncoderUtil.passwordEncoder(password));
         user.setStatus("0");
         user.setCreatetime(new Date());
+        user.setType("1");
         flag = this.save(user);
         if(flag == true){
             return ResultEnum.SUCCESS.getMessage();

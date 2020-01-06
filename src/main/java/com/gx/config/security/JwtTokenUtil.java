@@ -1,6 +1,7 @@
-package com.gx.security.util;
+package com.gx.config.security;
 
 import io.jsonwebtoken.Claims;
+import io.jsonwebtoken.ExpiredJwtException;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 
@@ -63,7 +64,7 @@ public class JwtTokenUtil {
                     .setSigningKey(publicKey)
                     .parseClaimsJws(token).getBody();*/
             subject = getTokenBody(token).getSubject();
-        } catch (Exception e) {
+        } catch (ExpiredJwtException e) {
         }
         return subject;
     }

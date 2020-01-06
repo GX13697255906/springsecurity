@@ -1,4 +1,4 @@
-package com.gx.security.util;
+package com.gx.config.security;
 
 import com.alibaba.fastjson.JSON;
 import com.gx.util.ResultEnum;
@@ -24,9 +24,7 @@ public class AjaxAuthenticationSuccessHandler implements AuthenticationSuccessHa
     @Override
     public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response, Authentication authentication) throws IOException, ServletException {
         SelfUserDetails userDetails = (SelfUserDetails) authentication.getPrincipal();
-
-        String jwtToken = JwtTokenUtil.generateToken(userDetails.getUsername(), 1500);
-
+        String jwtToken = JwtTokenUtil.generateToken(userDetails.getUsername(), 60*60*3);
         response.getWriter().write(JSON.toJSONString(ResultVO.result(ResultEnum.USER_LOGIN_SUCCESS,jwtToken,true)));
     }
 }

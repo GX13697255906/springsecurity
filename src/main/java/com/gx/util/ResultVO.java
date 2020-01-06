@@ -1,5 +1,8 @@
 package com.gx.util;
 
+import com.alibaba.fastjson.JSON;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
 import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
@@ -126,9 +129,9 @@ public final class ResultVO implements Serializable {
      * */
     public final static Map<String, Object> result(ResultEnum respCode, String jwtToken, Boolean success) {
         Map<String, Object> map = new HashMap<String, Object>();
-        map.put("jwtToken",jwtToken);
+        map.put("token",jwtToken);
         map.put("code", respCode.getCode());
-        map.put("message", respCode.getMessage());
+        map.put("message",respCode.getMessage());
         map.put("data", null);
         map.put("success",success);
         return map;
